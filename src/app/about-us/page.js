@@ -12,7 +12,8 @@ export default async function AboutUs() {
 
 export async function fetchData() {
   const storyblokApi = getStoryblokApi();
+  const version = process.env.NODE_ENV !== "production" ? "draft" : "published"
   return await storyblokApi.get("cdn/stories/about-us", {
-    version: "draft",
+    version,
   });
 }
