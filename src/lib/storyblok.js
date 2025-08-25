@@ -6,9 +6,11 @@ import Feature from '@/components/sb/Feature';
 import Grid from '@/components/sb/Grid';
 import DoesNotExist from '@/components/sb/DoesNotExist';
 import Hero from '@/components/sb/Hero';
+import BlogPost from '@/components/sb/BlogPost';
 export const components = {
     // Add your components here
     page: Page,
+    blog_post: BlogPost,
     feature: Feature,
     grid: Grid,
     teaser: Teaser,
