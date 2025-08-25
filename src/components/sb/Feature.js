@@ -1,5 +1,6 @@
 import { storyblokEditable } from "@storyblok/react/rsc";
 import ServerComponent from "./ServerComponent";
+import Title from "./Title";
 
 export default function Feature({ blok }) {
   return (
@@ -12,7 +13,7 @@ export default function Feature({ blok }) {
         alt={blok.name}
         className="w-full aspect-square object-cover rounded-md"
       />
-      <h2 className="text-2xl font-bold">{blok.name}</h2>
+      <Title blok={{ title: blok.name, size: "xl"}}/>
       <p className="text-gray-600">{blok.description}</p>
       <div className="flex flex-col gap-2">
         {blok?.cta?.map((nestedBlok) => (

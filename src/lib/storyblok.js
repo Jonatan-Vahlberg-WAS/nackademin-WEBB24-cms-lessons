@@ -7,10 +7,12 @@ import Grid from '@/components/sb/Grid';
 import DoesNotExist from '@/components/sb/DoesNotExist';
 import Hero from '@/components/sb/Hero';
 import BlogPost from '@/components/sb/BlogPost';
+import Title from '@/components/sb/Title';
 export const components = {
     // Add your components here
     page: Page,
     blog_post: BlogPost,
+    title: Title,
     feature: Feature,
     grid: Grid,
     teaser: Teaser,
