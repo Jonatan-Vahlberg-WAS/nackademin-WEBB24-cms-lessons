@@ -11,7 +11,7 @@ export default async function BlogLayout({ children }) {
     console.log("Config", config)
 
     const headerClasses = cn(
-        'py-2 px-4 border-b border-gray-400/50'
+        'py-2 px-4 border-b bg-gray-400/50'
     )
     const logoClasses = cn(
         'h-14 aspect-video'
