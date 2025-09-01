@@ -3,6 +3,7 @@ import { cn } from "@/utils/cn";
 
 export default async function DefaultLayout({
   children,
+  lang = "en",
   withHeader = true,
   withFooter = true,
 }) {
@@ -10,8 +11,7 @@ export default async function DefaultLayout({
     data: {
       story: { content: config },
     },
-  } = await fetchGlobalConfig();
-  console.log("Config", config);
+  } = await fetchGlobalConfig(lang);
 
   const headerClasses = cn("py-2 px-4 border-b border-gray-400/50");
   const logoClasses = cn("h-14 aspect-video");
@@ -36,10 +36,12 @@ export default async function DefaultLayout({
   );
 }
 
-export async function fetchGlobalConfig() {
+export async function fetchGlobalConfig(lang) {
   const storyblokApi = getStoryblokApi();
   const version = process.env.NODE_ENV !== "production" ? "draft" : "published";
-  return await storyblokApi.get("cdn/stories/global/default-config", {
+  const baseUrl = "cdn/stories/global"
+  const url = `${baseUrl}/${lang === "sv" ? "default-config-sv" : "default-config"}`
+  return await storyblokApi.get(url, {
     version,
   });
 }
