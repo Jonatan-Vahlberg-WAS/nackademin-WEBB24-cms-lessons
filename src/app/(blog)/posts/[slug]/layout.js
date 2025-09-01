@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "../../../globals.css";
 import StoryBlokProvider from "@/components/StoryBlokProvider";
-import BlogLayout from "@/components/sb/BlogLayout";
+import DefaultLayout from "@/components/sb/DefaultLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +25,7 @@ export default function BlogPageLayout({ children }) {
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <BlogLayout>{children}</BlogLayout>
+          <DefaultLayout withFooter={false}>{children}</DefaultLayout>
         </body>
       </html>
     </StoryBlokProvider>

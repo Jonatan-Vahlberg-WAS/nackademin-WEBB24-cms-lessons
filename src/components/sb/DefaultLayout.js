@@ -1,44 +1,47 @@
 import { getStoryblokApi } from "@/lib/storyblok";
 import { cn } from "@/utils/cn";
 
+export default async function DefaultLayout({
+  children,
+  withHeader = true,
+  withFooter = true,
+}) {
+  const {
+    data: {
+      story: { content: config },
+    },
+  } = await fetchGlobalConfig();
+  console.log("Config", config);
 
-export default async function DefaultLayout({ children }) {
-    const { data: {
-        story: {
-            content: config
-        }
-    } } = await fetchGlobalConfig()
-    console.log("Config", config)
+  const headerClasses = cn("py-2 px-4 border-b border-gray-400/50");
+  const logoClasses = cn("h-14 aspect-video");
 
-    const headerClasses = cn(
-        'py-2 px-4 border-b border-gray-400/50'
-    )
-    const logoClasses = cn(
-        'h-14 aspect-video'
-    )
-
-  return <div>
-    <div className={headerClasses}>
-        <div>
-            <img className={logoClasses} src={config.logo.filename}/>
-        </div>
-    </div>
-    {children}
+  return (
     <div>
-        FOOTER
-        <h4>
-            {config.copyright}
-        </h4>
+      {withHeader && (
+        <div className={headerClasses}>
+          <div>
+            <img className={logoClasses} src={config.logo.filename} />
+          </div>
+        </div>
+      )}
+      {children}
+      {withFooter && (
+        <div>
+          FOOTER
+          <h4>{config.copyright}</h4>
+        </div>
+      )}
     </div>
-    </div>;
+  );
 }
 
 export async function fetchGlobalConfig() {
-    const storyblokApi = getStoryblokApi();
-    const version = process.env.NODE_ENV !== "production" ? "draft" : "published"
-    return await storyblokApi.get("cdn/stories/global/default-config", {
-        version,
-    });
+  const storyblokApi = getStoryblokApi();
+  const version = process.env.NODE_ENV !== "production" ? "draft" : "published";
+  return await storyblokApi.get("cdn/stories/global/default-config", {
+    version,
+  });
 }
 
 /**
