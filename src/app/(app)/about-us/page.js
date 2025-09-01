@@ -1,19 +1,5 @@
-import { getStoryblokApi } from "@/lib/storyblok";
-import { StoryblokStory } from '@storyblok/react/rsc';
+import { redirect, RedirectType } from "next/navigation";
 
 export default async function AboutUs() {
-  const { data } = await fetchData();
-  return (
-    <div className="page">
-      <StoryblokStory story={data.story} />
-    </div>
-  );
-}
-
-export async function fetchData() {
-  const storyblokApi = getStoryblokApi();
-  const version = process.env.NODE_ENV !== "production" ? "draft" : "published"
-  return await storyblokApi.get("cdn/stories/about-us", {
-    version,
-  });
+  return redirect("/en/about-us", RedirectType.replace)
 }
