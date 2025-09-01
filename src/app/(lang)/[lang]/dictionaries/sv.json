@@ -1,0 +1,16 @@
+{
+    "home": {
+        "title": "Hem"
+    },
+    "global": {
+        "footer": {
+            "title": "Sidfot"
+        }
+    },
+    "notFound": {
+        "title": "Sidan kunde inte hittas",
+        "number": "404",
+        "description": "Tyvärr, vi kunde inte hitta sidan du letade efter. Den kan ha flyttats eller så finns den inte.",
+        "returnHome": "Gå till startsidan"
+    }
+}

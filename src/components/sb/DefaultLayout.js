@@ -1,3 +1,4 @@
+import { getDictionary } from "@/app/(lang)/[lang]/dictionaries";
 import { getStoryblokApi } from "@/lib/storyblok";
 import { cn } from "@/utils/cn";
 
@@ -13,6 +14,10 @@ export default async function DefaultLayout({
     },
   } = await fetchGlobalConfig(lang);
 
+  const dict = await getDictionary(lang)
+
+  console.log("Dict", dict)
+
   const headerClasses = cn("py-2 px-4 border-b border-gray-400/50");
   const logoClasses = cn("h-14 aspect-video");
 
@@ -21,14 +26,14 @@ export default async function DefaultLayout({
       {withHeader && (
         <div className={headerClasses}>
           <div>
-            <img className={logoClasses} src={config.logo.filename} />
+            <img className={logoClasses} src={config.logo.filename} title={dict.home.title} />
           </div>
         </div>
       )}
       {children}
       {withFooter && (
         <div>
-          FOOTER
+          {dict.global.footer.title}
           <h4>{config.copyright}</h4>
         </div>
       )}
